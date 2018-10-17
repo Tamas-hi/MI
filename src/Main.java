@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Stack;
@@ -66,37 +67,49 @@ public class Main {
         }
     }
     
-    public static void read_in(){
-        boolean vege = false;
+    public static void read_in() throws FileNotFoundException {
+
         Vector<Vector<Integer>> vector = new Vector<>();
-      Scanner scanner=new Scanner("matrix1.txt");
-      while(scanner.hasNextLine()&& vege){
-        String line = scanner.nextLine();
-        String[] integerStrings=line.split(" ");
-        Vector<Integer> vector_tmp=new Vector<>();
-        if(vector_tmp.size()>0){
-          vector_tmp.removeAllElements();
+        boolean vege = true;
+        int targy = 0;
+
+        //beolvasunk
+        File file = new File("C:\\Users\\TomM\\IdeaProjects\\MI\\src\\matrix1.txt");
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine() && vege) {
+            String line = scanner.nextLine();
+            String[] integerStrings = line.split(" ");
+            Vector<Integer> vector_tmp = new Vector<>();
+
+            if (vector_tmp.size() > 0) {
+                vector_tmp.removeAllElements();
+            }
+            for (int i = 0; i < integerStrings.length; i++) {
+                if (!integerStrings[i].equals("")) {
+                    vector_tmp.add(Integer.parseInt(integerStrings[i]));
+                }
+                if (integerStrings.length == 1) {
+                    vege = false;
+                }
+
+            }
+            if (vege) {
+                vector.add(vector_tmp);
+            } else {
+                targy = vector_tmp.get(0);
+            }
+
         }
-        for(int i=0;i<integerStrings.length;i++){
-          if(!integerStrings[i].equals("")){
-            vector_tmp.add(Integer.parseInt(integerStrings[i]));
-          }
-          if(integerStrings.length==1){
-            vege=false;
-          }
-        }
-        if(vege){
-          vector.add(vector_tmp);
-        }else{
-          //targy=vector_tmp.get(0);
-        }
-      }
-      scanner.close();
+        scanner.close();
+        for(int i=0;i<vector.size();i++)
+            for(int j = 0; j<vector.firstElement().size();j++){
+                System.out.println(vector.get(i).get(j));
+            }
     }
     
     
     public static void main(String[] args) throws FileNotFoundException{
-        
+        read_in();
     }
 
 }
