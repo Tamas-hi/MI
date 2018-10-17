@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.Vector;
 
 
 public class Main {
@@ -13,7 +14,7 @@ public class Main {
     private static final int OBJECT = 16;
 
     private static boolean[][] marked;
-
+    
 
 
     //give a graph and a point, i give back a point that can be reachable from your point
@@ -65,42 +66,45 @@ public class Main {
             }
         }
     }
-
-
-    public static int[][] readMatrix(String fileName,int row, int col) throws FileNotFoundException {
-        int[][] matrix = new int[row][col];
-
-        Scanner inFile = new Scanner(new File(fileName));
-        for(int r = 0; r < row; r++) {
-            for(int c = 0; c < col; c++) {
-                if(inFile.hasNextInt()) {
-                    matrix[r][c] = inFile.nextInt();
-                }
-            }
-
+    
+    public static void read_in(){
+      Scanner scanner=new Scanner("matrix1.txt");
+      while(scanner.hasNextLine()&&vege){
+        String line = scanner.nextLine();
+        String[] integerStrings=line.split(" ");
+        Vector<integer> vector_temp=new Vector<>();
+        if(vector_tmp.size()>0){
+          vector_temp.removeAllElements();
         }
-        inFile.close();
-
-        return matrix;
-    }
-    public static void printMatrix(int[][] matrix, int row, int col) {
-        for (int r = 0; r < row; r++){
-            for (int c = 0; c < col; c++)
-                System.out.printf("%5d", matrix[r][c]);
-            System.out.println();
+        for(int i=0;i<integerStrings.length;i++){
+          if(!integerStrings[i].equals("")){
+            vector_tmp.add(Integer.parseInt(integerStrings[i]));
+          }
+          if(integerStrings.length==1){
+            vege=false
+          }
         }
+        if(vege){
+          vector.add(vector_tmp);
+        }else{
+          targy=vector_tmp.get(0);
+        }
+      }
+      scanner.close
     }
+    
+    
     public static void main(String[] args) throws FileNotFoundException{
-        int[][] a;
-        int row = 10, col = 10;
-        Scanner inFile = null;
 
-
-
-        a = new int[row][col];
-        a = readMatrix("matrix1.txt", row, col);
-        printMatrix(a, row, col);
-        NonrecursiveDFS(a);
+        int[][] matrix; 
+         System.out.printf("1");
+        matrix_par par =preRead("matrix1.txt");
+        System.out.printf("1");
+        matrix = readMatrix("matrix1.txt", par.rows, par.columns);
+         System.out.printf("2");
+        printMatrix(matrix, par.rows, par.columns);
+         System.out.printf("3");
+        NonrecursiveDFS(matrix);
     }
 
 }
