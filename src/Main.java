@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Stack;
@@ -68,43 +67,36 @@ public class Main {
     }
     
     public static void read_in(){
+        boolean vege = false;
+        Vector<Vector<Integer>> vector = new Vector<>();
       Scanner scanner=new Scanner("matrix1.txt");
-      while(scanner.hasNextLine()&&vege){
+      while(scanner.hasNextLine()&& vege){
         String line = scanner.nextLine();
         String[] integerStrings=line.split(" ");
-        Vector<integer> vector_temp=new Vector<>();
+        Vector<Integer> vector_tmp=new Vector<>();
         if(vector_tmp.size()>0){
-          vector_temp.removeAllElements();
+          vector_tmp.removeAllElements();
         }
         for(int i=0;i<integerStrings.length;i++){
           if(!integerStrings[i].equals("")){
             vector_tmp.add(Integer.parseInt(integerStrings[i]));
           }
           if(integerStrings.length==1){
-            vege=false
+            vege=false;
           }
         }
         if(vege){
           vector.add(vector_tmp);
         }else{
-          targy=vector_tmp.get(0);
+          //targy=vector_tmp.get(0);
         }
       }
-      scanner.close
+      scanner.close();
     }
     
     
     public static void main(String[] args) throws FileNotFoundException{
-
-        int[][] matrix; 
-         System.out.printf("1");
-        matrix_par par =preRead("matrix1.txt");
-        System.out.printf("1");
-        matrix = readMatrix("matrix1.txt", par.rows, par.columns);
-         System.out.printf("2");
-        printMatrix(matrix, par.rows, par.columns);
-         System.out.printf("3");
-        NonrecursiveDFS(matrix);
+        
     }
 
 }
