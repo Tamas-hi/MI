@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.Stack;
@@ -92,7 +91,7 @@ public class Main {
             } else {
                 stack.pop();
             }
-            System.out.format("%d %d \n",v.x,v.y);
+            System.out.format("%d %d\n",v.x,v.y);
             if(targy_bool&&v.x==targy.x&&v.y==targy.y){
                 System.out.format("felvesz\n");
                 targy_bool=false;
@@ -103,21 +102,23 @@ public class Main {
 
             Point s=stack_final.pop();
             if(s.x!=0&&s.y!=0)
-                System.out.format("%d %d \n", s.x,s.y);
+                System.out.format("%d %d\n", s.x,s.y);
         }
-        System.out.format("%d %d \n",matrix_array.length-1,matrix_array[0].length-1);
+        System.out.format("%d %d\n",matrix_array.length-1,matrix_array[0].length-1);
     }
 
 
-    public static int[][] read_in() throws FileNotFoundException {
+    public static int[][] read_in() throws IOException {
 
         Vector<Vector<Integer>> vector = new Vector<>();
         boolean vege = true;
         int targy = 0;
 
         //beolvasunk
-        //File file = new File("C:\\Users\\TomM\\IdeaProjects\\MI\\src\\matrix1.txt");
+        //File file = new File("C:\\Users\\Tomi\\Desktop\\MI\\src\\matrix1.txt");
         Scanner scanner = new Scanner(System.in);
+        //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        //String line;
         while (scanner.hasNextLine() && vege) {
             String line = scanner.nextLine();
             String[] integerStrings = line.split(" ");
@@ -142,6 +143,7 @@ public class Main {
             }
         }
         scanner.close();
+        //br.close();
         int row;
         int column;
         row = vector.size();
@@ -157,10 +159,10 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws FileNotFoundException{
+    public static void main(String[] args) throws IOException {
         int[][] a=read_in();
         NonrecursiveDFS(a);
-        System.out.print("\n");
+        //System.out.print("\n");
     }
 
 }
