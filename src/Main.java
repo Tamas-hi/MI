@@ -93,7 +93,7 @@ public class Main {
             }
             System.out.format("%d %d\n",v.x,v.y);
             if(targy_bool&&v.x==targy.x&&v.y==targy.y){
-                System.out.format("felvesz\n");
+                System.out.print("felvesz\n");
                 targy_bool=false;
             }
         }
