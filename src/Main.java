@@ -24,6 +24,7 @@ public class Main {
     private static final int OBJECT = 16;
 
     private static boolean[][] marked;
+    private static boolean flag = true;
 
 
     //give a graph and a point, i give back a point that can be reachable from your point
@@ -91,7 +92,12 @@ public class Main {
             } else {
                 stack.pop();
             }
-            System.out.format("%d %d\n",v.x,v.y);
+            if(v.x == 0 && v.y == 0 && flag) {
+                flag = false;
+            }else{
+                System.out.format("%d %d\n", v.x, v.y);
+            }
+
             if(targy_bool&&v.x==targy.x&&v.y==targy.y){
                 System.out.print("felvesz\n");
                 targy_bool=false;
@@ -101,7 +107,7 @@ public class Main {
         while(!stack_final.isEmpty()) {
 
             Point s=stack_final.pop();
-            if(s.x!=0&&s.y!=0)
+            if(s.x!=0 || s.y!=0)
                 System.out.format("%d %d\n", s.x,s.y);
         }
         System.out.format("%d %d\n",matrix_array.length-1,matrix_array[0].length-1);
@@ -111,39 +117,31 @@ public class Main {
     public static int[][] read_in() throws IOException {
 
         Vector<Vector<Integer>> vector = new Vector<>();
-        boolean vege = true;
-        int targy = 0;
+        boolean end = true;
 
-        //beolvasunk
-        //File file = new File("C:\\Users\\Tomi\\Desktop\\MI\\src\\matrix1.txt");
         Scanner scanner = new Scanner(System.in);
-        //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        //String line;
-        while (scanner.hasNextLine() && vege) {
+        while (scanner.hasNextLine() && end) {
             String line = scanner.nextLine();
             String[] integerStrings = line.split(" ");
-            Vector<Integer> vector_tmp = new Vector<>();
+            Vector<Integer> vector_idg = new Vector<>();
 
-            if (vector_tmp.size() > 0) {
-                vector_tmp.removeAllElements();
+            if (vector_idg.size() > 0) {
+                vector_idg.removeAllElements();
             }
             for (int i = 0; i < integerStrings.length; i++) {
                 if (!integerStrings[i].equals("")) {
-                    vector_tmp.add(Integer.parseInt(integerStrings[i]));
+                    vector_idg.add(Integer.parseInt(integerStrings[i]));
                 }
                 if (integerStrings.length == 1) {
-                    vege = false;
+                    end = false;
                 }
 
             }
-            if (vege) {
-                vector.add(vector_tmp);
-            } else {
-                targy = vector_tmp.get(0);
+            if (end) {
+                vector.add(vector_idg);
             }
         }
         scanner.close();
-        //br.close();
         int row;
         int column;
         row = vector.size();
